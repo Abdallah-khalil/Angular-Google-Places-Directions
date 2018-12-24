@@ -29,7 +29,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatRadioModule,
     FlexLayoutModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBgZV_jw-X2Nvb25aqOS0XphfFNBEa8TnA',
+      apiKey: 'PLACE_API_KEY_HERE',
       libraries: ['places']
     })
   ],
