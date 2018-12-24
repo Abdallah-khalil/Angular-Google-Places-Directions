@@ -1,0 +1,32 @@
+<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px" style="margin-top: 10px;">
+  <mat-card fxFlex="65%">
+    <agm-map (mapReady)="mapReady($event)" [latitude]="lat" [longitude]="lng"> </agm-map>
+  </mat-card>
+
+  <mat-card fxFlex="30%" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px">
+
+    <mat-form-field appearance="outline" fxFlex  class="w-100p">
+        <mat-label>Origin location</mat-label>
+        <input matInput type="text" #originaInput placeholder="Enter an origin location">
+        <mat-icon matSuffix>map</mat-icon>
+        <mat-hint>Required*</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" fxFlex class="w-100p">
+          <mat-label>Destination location</mat-label>
+          <input matInput type="text" #destinationInput  placeholder="Enter a destination location">
+          <mat-icon matSuffix>map</mat-icon>
+          <mat-hint>Required*</mat-hint>
+        </mat-form-field>
+
+    <mat-radio-group [(ngModel)]="mode" fxFlex  (change)="radioButtonChange()" class="w-100p">
+      <mat-radio-button value="WALKING">Walking</mat-radio-button>
+      <mat-radio-button value="TRANSIT">Transit</mat-radio-button>
+      <mat-radio-button value="DRIVING">Driving</mat-radio-button>
+    </mat-radio-group>
+
+
+
+  </mat-card>
+
+</div>
