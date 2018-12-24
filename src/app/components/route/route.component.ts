@@ -10,8 +10,8 @@ declare var google: any;
 })
 export class RouteComponent implements OnInit {
   map: AgmMap;
-  lat: -33.8688;
-  lng: 151.2195;
+  lat: number;
+  lng: number;
   mode: string;
 
   originPlaceId: any;
@@ -24,6 +24,8 @@ export class RouteComponent implements OnInit {
   directionsDisplay: any;
   constructor() {
     this.mode = 'DRIVING';
+    this.lat = 26.8206;
+    this.lng = 30.8025;
   }
 
   mapReady(map): void {
@@ -53,12 +55,12 @@ export class RouteComponent implements OnInit {
 
   radioButtonChange() {
     debugger;
-    this.route();
+    this.routeFn();
   }
 
   setupPlaceChangedListener(autocomplete, mode) {
     autocomplete.bindTo('bounds', this.map);
-    autocomplete.addListener('place_changed', function() {
+    autocomplete.addListener('place_changed', () => {
       var place = autocomplete.getPlace();
       if (!place.place_id) {
         window.alert('Please select an option from the dropdown list.');
@@ -69,11 +71,11 @@ export class RouteComponent implements OnInit {
       } else {
         this.destinationPlaceId = place.place_id;
       }
-      this.route();
+      this.routeFn();
     });
   }
 
-  route(): void {
+  routeFn(): void {
     if (!this.originPlaceId || !this.destinationPlaceId) {
       return;
     }
@@ -84,7 +86,7 @@ export class RouteComponent implements OnInit {
         destination: { placeId: this.destinationPlaceId },
         travelMode: this.mode
       },
-      function(response, status) {
+      (response, status) => {
         if (status === 'OK') {
           this.directionsDisplay.setDirections(response);
         } else {
