@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { AgmMap } from '@agm/core';
-
+// import * as google from 'google-maps';
 declare var google: any;
 
 @Component({
@@ -9,7 +9,7 @@ declare var google: any;
   styleUrls: ['./route.component.css']
 })
 export class RouteComponent implements OnInit {
-  map: AgmMap;
+  map: any;
   lat: number;
   lng: number;
   mode: string;
@@ -19,6 +19,7 @@ export class RouteComponent implements OnInit {
 
   @ViewChild('originaInput') originaInput: ElementRef;
   @ViewChild('destinationInput') destinationInput: ElementRef;
+  @ViewChild('formCard') formCard: ElementRef;
 
   directionsService: any;
   directionsDisplay: any;
@@ -41,27 +42,39 @@ export class RouteComponent implements OnInit {
     this.directionsDisplay = new google.maps.DirectionsRenderer();
     this.directionsDisplay.setMap(map);
 
-    var originAutocomplete = new google.maps.places.Autocomplete(originInput, {
-      placeIdOnly: true
-    });
-    var destinationAutocomplete = new google.maps.places.Autocomplete(
+    const originAutocomplete = new google.maps.places.Autocomplete(
+      originInput,
+      {
+        placeIdOnly: true
+      }
+    );
+    const destinationAutocomplete = new google.maps.places.Autocomplete(
       destinationInput,
       { placeIdOnly: true }
     );
 
     this.setupPlaceChangedListener(originAutocomplete, 'ORIG');
     this.setupPlaceChangedListener(destinationAutocomplete, 'DEST');
+
+    // /**
+    //  * Setting form Card on the map
+    //  */
+    // debugger;
+    // this.map.controls[google.maps.ControlPosition.TOP_LEFT].push(
+    //   // this.formCard.nativeElement
+    //   originInput
+    // );
   }
 
   radioButtonChange() {
-    debugger;
+    // debugger;
     this.routeFn();
   }
 
   setupPlaceChangedListener(autocomplete, mode) {
     autocomplete.bindTo('bounds', this.map);
     autocomplete.addListener('place_changed', () => {
-      var place = autocomplete.getPlace();
+      const place = autocomplete.getPlace();
       if (!place.place_id) {
         window.alert('Please select an option from the dropdown list.');
         return;

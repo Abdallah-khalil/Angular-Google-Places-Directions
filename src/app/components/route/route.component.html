@@ -1,9 +1,9 @@
-<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px" style="margin-top: 10px;">
-  <mat-card fxFlex="65%">
-    <agm-map (mapReady)="mapReady($event)" [latitude]="lat" [longitude]="lng"> </agm-map>
+<div fxLayout="row" fxLayoutAlign="start start" fxLayoutGap="10px" class="map-container">
+  <mat-card fxFlex="100%" class="map-card">
+    <agm-map (mapReady)="mapReady($event)" [latitude]="lat" [longitude]="lng" [zoom]="6"> </agm-map>
   </mat-card>
 
-  <mat-card fxFlex="30%" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px">
+  <mat-card #formCard class="form-card" fxLayout="column" fxLayoutAlign="start start" fxLayoutGap="5px">
 
     <mat-form-field appearance="outline" fxFlex  class="w-100p">
         <mat-label>Origin location</mat-label>

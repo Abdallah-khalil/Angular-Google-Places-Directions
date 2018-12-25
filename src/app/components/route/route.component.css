@@ -1,7 +1,25 @@
+.map-container {
+  padding: 5px;
+  height: 100%
+}
+
+.map-card {
+  height: 100%;
+  padding: 0;
+}
+
+
 agm-map {
-  height: 600px;
+  height: 100%;
 }
 
 .w-100p {
   width: 100%;
+}
+
+.form-card {
+  position: fixed;
+  right:10px;
+  top: 5px;
+
 }
